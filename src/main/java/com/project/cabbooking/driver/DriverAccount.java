@@ -1,6 +1,6 @@
 package com.project.cabbooking.driver;
 
-import com.Project.cabbooking.booking.Rating;
+import com.project.cabbooking.booking.Rating;
 import com.project.cabbooking.driver.Car;
 import com.project.cabbooking.ride.Ride;
 import com.fasterxml.jackson.annotation.JsonIgnore;

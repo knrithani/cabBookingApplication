@@ -1,7 +1,7 @@
 package com.project.cabbooking.booking;
 
 import com.project.cabbooking.driver.Car;
-import com.Project.cabbooking.booking.Rating;
+import com.project.cabbooking.booking.Rating;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -25,7 +25,7 @@ public class Booking {
     private Payment payment;
 
     @OneToOne
-    private com.Project.cabbooking.booking.Rating rating;
+    private Rating rating;
 
     @OneToOne
     private Car car;

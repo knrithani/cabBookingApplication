@@ -1,4 +1,4 @@
-package com.Project.cabbooking.booking;
+package com.project.cabbooking.booking;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
