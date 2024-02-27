@@ -9,12 +9,14 @@ public class Rating {
     @Id
     @GeneratedValue
     private Integer id;
+    private Integer driverId;
     private Float point;
     private String review;
     public Rating() {
     }
 
-    public Rating(Float point, String review) {
+    public Rating(Integer driverId, Float point, String review) {
+        this.driverId = driverId;
         this.point = point;
         this.review = review;
     }
@@ -41,5 +43,13 @@ public class Rating {
 
     public void setReview(String review) {
         this.review = review;
+    }
+
+    public Integer getDriverId() {
+        return driverId;
+    }
+
+    public void setDriverId(Integer driverId) {
+        this.driverId = driverId;
     }
 }

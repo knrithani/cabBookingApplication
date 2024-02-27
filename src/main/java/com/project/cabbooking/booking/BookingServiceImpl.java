@@ -27,6 +27,9 @@ public class BookingServiceImpl implements BookingService{
     @Autowired
     private PaymentRepository paymentRepository;
 
+    @Autowired
+    private RatingRepository ratingRepository;
+
 
     @Override
     public List<Car> listOfCabs(String startLocation, String endLocation) {
@@ -95,4 +98,66 @@ public class BookingServiceImpl implements BookingService{
         return booking;
 
     }
+
+    @Override
+    public Booking cancelBooking(Integer bookingId) {
+        Optional<Booking> bookingOpt = this.bookingRepository.findById(bookingId);
+        if (bookingOpt.isPresent()) {
+            this.bookingRepository.deleteById(bookingId);
+        } else {
+            return null;
+        }
+        return bookingOpt.get();
+    }
+
+    @Override
+    public List<Booking> findAllBookingsById(Integer customerId) {
+        return this.bookingRepository.findAll();
+    }
+    //
+
+    @Override
+    public Rating createRatingForDriver(Integer driverId, Rating rating) throws BookingExceptions{
+        rating.setDriverId(driverId);
+        return ratingRepository.save(rating);
+    }
+
+    @Override
+    public List<Rating> getAllRatingsForDriver(Integer driverId) throws BookingExceptions{
+        return ratingRepository.findAllByDriverId(driverId);
+    }
+
+    @Override
+    public Rating deleteRatingForDriver(Integer driverId, Integer ratingId) throws BookingExceptions{
+        //return ratingRepository.deleteById(driverId);
+        return null;
+    }
+
+    //payment
+    @Override
+    public BookingDto makePayment(PaymentDto paymentDto) throws BookingExceptions{
+        Payment payment = new Payment();
+        payment.setCustomerId(paymentDto.getUserId());
+        payment.setCabId(paymentDto.getCabId());
+        payment.setAmount(paymentDto.getFare());
+        payment.setDate(LocalDate.now());
+        payment.setStatus("Success");
+        payment.setPaymentMethod("Gpay");
+        payment.setId(payment.getId());
+
+
+        Payment savedPayment = paymentRepository.save(payment);
+
+        BookingDto result = new BookingDto();
+        result.setCustomerId(savedPayment.getCustomerId());
+        result.setCabId(savedPayment.getCabId());
+        result.setAmount(savedPayment.getAmount());
+        result.setDate(savedPayment.getDate());
+        result.setStatus(savedPayment.getStatus());
+        result.setPaymentMethod(savedPayment.getPaymentMethod());
+        result.setPaymentId(savedPayment.getId());
+
+        return result;
+    }
+
 }

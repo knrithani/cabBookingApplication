@@ -1,5 +1,6 @@
 package com.project.cabbooking.booking;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -11,6 +12,8 @@ public class Payment {
     @Id
     @GeneratedValue
     private Integer id;
+    private Integer customerId;
+    private Integer cabId;
     private LocalDate date;
     private String status;
     private Double amount;
@@ -19,7 +22,10 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(LocalDate date, String status, Double amount, String paymentMethod) {
+    public Payment(Integer id, Integer customerId, Integer cabId, LocalDate date, String status, Double amount, String paymentMethod) {
+        this.id = id;
+        this.customerId = customerId;
+        this.cabId = cabId;
         this.date = date;
         this.status = status;
         this.amount = amount;
@@ -64,5 +70,21 @@ public class Payment {
 
     public void setPaymentMethod(String paymentMethod) {
         PaymentMethod = paymentMethod;
+    }
+
+    public Integer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
+
+    public Integer getCabId() {
+        return cabId;
+    }
+
+    public void setCabId(Integer cabId) {
+        this.cabId = cabId;
     }
 }
