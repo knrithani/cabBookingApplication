@@ -28,14 +28,13 @@ public class Car {
     public Car() {
     }
 
-    public Car(String type, String carNumber, Integer capacity, Integer availableSeats, String location, String tripType, DriverAccount driver) {
-        this.type = type;
+    public Car( String carNumber, Integer capacity, Integer availableSeats, String location, String tripType) {
+
         this.carNumber = carNumber;
         this.capacity = capacity;
         this.availableSeats = availableSeats;
         this.location = location;
         this.tripType = tripType;
-        this.driver = driver;
 
     }
 

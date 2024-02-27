@@ -36,7 +36,7 @@ public void testCreatRoute() throws RouteException {
     @Test
     public void testDisplayAllCabs() throws RouteException {
 
-        List<Car> carList = Arrays.asList(new Car());
+        List<Car> carList = Arrays.asList(new Car("1001",4,2,"Tambaram","drop"));
         List<Car> result = adminService.displayAllCabs();
 
         assertEquals(carList, result);
