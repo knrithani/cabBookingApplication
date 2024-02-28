@@ -6,5 +6,4 @@ import java.util.List;
 
 public interface RatingRepository extends JpaRepository<Rating,Integer> {
     List<Rating> findAllByDriverId(Integer driverId);
-
 }

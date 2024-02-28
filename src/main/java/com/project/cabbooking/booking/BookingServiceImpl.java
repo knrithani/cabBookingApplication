@@ -33,8 +33,14 @@ public class BookingServiceImpl implements BookingService{
 
     @Override
     public List<Car> listOfCabs(String startLocation, String endLocation) {
+        List<Car> allCarsList = new ArrayList<>();
+        allCarsList = this.carRepository.findAll();
         List<Car> carsList = new ArrayList<>();
-        carsList = this.carRepository.findAllByStartLocationAndEndLocation(startLocation, endLocation);
+        for(Car car : allCarsList){
+         if(car.getRoute().getStartLocation().equals(startLocation) && car.getRoute().getEndLocation().equals(endLocation)){
+             carsList.add(car);
+         }
+        }
         return carsList;
     }
 
