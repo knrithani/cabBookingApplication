@@ -18,8 +18,9 @@ public class CustomerAccount {
     private String name;
     private String cdsId;
     private String password;
-    private Double phoneNumber;
+    private long phoneNumber;
     private String address;
+
 
     @OneToMany
     private List<Booking> bookings = new ArrayList<>();
@@ -27,7 +28,7 @@ public class CustomerAccount {
     public CustomerAccount() {
     }
 
-    public CustomerAccount(String name, String cdsId, String password, Double phoneNumber, String address) {
+    public CustomerAccount(String name, String cdsId, String password, long phoneNumber, String address) {
         this.name = name;
         this.cdsId = cdsId;
         this.password = password;
@@ -35,7 +36,8 @@ public class CustomerAccount {
         this.address = address;
     }
 
-    public CustomerAccount(String name, String cdsId, String password, Double phoneNumber, String address, List<Booking> bookings) {
+    public CustomerAccount(Integer id, String name, String cdsId, String password, long phoneNumber, String address, List<Booking> bookings) {
+        this.id = id;
         this.name = name;
         this.cdsId = cdsId;
         this.password = password;
@@ -76,11 +78,11 @@ public class CustomerAccount {
         this.password = password;
     }
 
-    public Double getPhoneNumber() {
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Double phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

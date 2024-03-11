@@ -1,8 +1,10 @@
 package com.Project.cabbooking.car;
 
-import com.Project.cabbooking.car.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CarRepository extends JpaRepository<Car, Integer> {
+import java.util.Optional;
+
+public interface CarRepository extends JpaRepository<CarAccount, Integer> {
+    Optional<CarAccount> findByCarNumber(String carNumber);
     Car getCarById(Integer id);
 }

@@ -13,16 +13,33 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    public CustomerAccount login(String cdsId, String userPassword){
-        Optional<CustomerAccount> accountOpt = this.customerRepository.findByCdsId(cdsId);
-        /*if(accountOpt.isEmpty()){
+//    public CustomerAccount login(String cdsId, String userPassword){
+//        Optional<CustomerAccount> accountOpt = this.customerRepository.findByCdsId(cdsId);
+//        /*if(accountOpt.isEmpty()){
+//
+//        }*/
+//        CustomerAccount foundAccount = accountOpt.get();
+//        if(foundAccount.getPassword().equals(userPassword)){
+//            return foundAccount;
+//        }
+//        return null;
+//    }
 
-        }*/
-        CustomerAccount foundAccount = accountOpt.get();
-        if(foundAccount.getPassword().equals(userPassword)){
-            return foundAccount;
-        }
+    @Override
+    public CustomerAccount login(String cdsId, String password) {
         return null;
     }
+
+//    public CustomerAccount login(String cdsId, String userPassword){
+//        boolean accountOpt = this.customerRepository.findByCdsId(cdsId);
+//        /*if(accountOpt.isEmpty()){
+//
+//        }*/
+//        CustomerAccount foundAccount = accountOpt.get();
+//        if(foundAccount.getPassword().equals(userPassword)){
+//            return foundAccount;
+//        }
+//        return null;
+//    }
 
 }

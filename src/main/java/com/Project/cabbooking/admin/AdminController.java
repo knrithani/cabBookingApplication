@@ -1,5 +1,6 @@
 package com.Project.cabbooking.admin;
 
+
 import com.Project.cabbooking.booking.Route;
 import com.Project.cabbooking.booking.RouteException;
 import com.Project.cabbooking.car.Car;
@@ -8,6 +9,15 @@ import com.Project.cabbooking.driver.DriverAccount;
 import com.Project.cabbooking.driver.DriverRepository;
 import com.Project.cabbooking.user.CustomerAccount;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import com.Project.cabbooking.booking.Booking;
+import com.Project.cabbooking.car.CarAccount;
+import com.Project.cabbooking.driver.DriverAccount;
+import com.Project.cabbooking.ride.Ride;
+import com.Project.cabbooking.user.CustomerAccount;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -66,7 +76,79 @@ public class AdminController {
     public Map<Integer,Integer> assigningCabToDriver(@PathVariable Integer cabId,@PathVariable Integer driverId){
         return this.adminService.assignCabToDriver(cabId,driverId);
     }
+    @PostMapping("driver")
+    public DriverAccount registerDriver(@RequestBody DriverAccount account) throws AdminExceptions {
+        return this.adminService.registerDriver(account);
+    }
 
+    @PostMapping("cab")
+    public CarAccount registerCar(@RequestBody CarAccount account) throws AdminExceptions {
+        return this.adminService.registerCar(account);
+    }
+
+    @GetMapping("/Booking/{cdsId}")
+    public ResponseEntity<List<Booking>> getAllTripsHandler(@PathVariable("cdsId") String cdsId) throws AdminExceptions {
+        List<Booking> trips= adminService.getAllTrips(cdsId);
+        return new ResponseEntity<List<Booking>>(trips, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/Booking")
+    public List<Booking>  getAllBookings() throws AdminExceptions {
+        return adminService.getAllBookings();
+    }
+
+    @GetMapping("/Trips")
+    public List<Ride>  getAllTrips() throws AdminExceptions {
+        return adminService.getAllTrips();
+    }
+
+    @GetMapping("customerbookings")
+    public List<List<Booking>> CustomerBookings(){
+        return this.adminService.getAllCustomerBookings();
+    }
+
+    @GetMapping("drivertrips")
+    public List<List<Ride>> driverTrips(){
+        return this.adminService.getAllDriverTrips();
+    }
+
+    @PostMapping("driver")
+    public DriverAccount registerDriver(@RequestBody DriverAccount account) throws AdminExceptions {
+        return this.adminService.registerDriver(account);
+    }
+
+    @PostMapping("cab")
+    public CarAccount registerCar(@RequestBody CarAccount account) throws AdminExceptions {
+        return this.adminService.registerCar(account);
+    }
+
+    @GetMapping("/Booking/{cdsId}")
+    public ResponseEntity<List<Booking>> getAllTripsHandler(@PathVariable("cdsId") String cdsId) throws AdminExceptions {
+        List<Booking> trips= adminService.getAllTrips(cdsId);
+        return new ResponseEntity<List<Booking>>(trips, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/Booking")
+    public List<Booking>  getAllBookings() throws AdminExceptions {
+        return adminService.getAllBookings();
+    }
+
+    @GetMapping("/Trips")
+    public List<Ride>  getAllTrips() throws AdminExceptions {
+        return adminService.getAllTrips();
+    }
+
+    @GetMapping("customerbookings")
+    public List<List<Booking>> CustomerBookings(){
+        return this.adminService.getAllCustomerBookings();
+    }
+
+    @GetMapping("drivertrips")
+    public List<List<Ride>> driverTrips(){
+        return this.adminService.getAllDriverTrips();
+    }
 //    public AdminController(CarRepository carRepository, DriverRepository driverRepository) {
 //        this.carRepository = carRepository;
 //        this.driverRepository = driverRepository;
@@ -89,7 +171,7 @@ public class AdminController {
 //
 //        return "Assigned cab " + cabId + " to driver " + driverId;
 //    }
-}
+
 
 //    @PutMapping("updatingcabdriver/{cabid}/{driverid}")
 //    public Map<Integer>
@@ -98,4 +180,5 @@ public class AdminController {
 //        return this.adminService.getAllCabDriverData();
 //    }
 
+}
 

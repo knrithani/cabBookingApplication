@@ -1,6 +1,7 @@
 package com.Project.cabbooking.driver;
 
 import com.Project.cabbooking.booking.Rating;
+import com.Project.cabbooking.car.CarAccount;
 import com.Project.cabbooking.car.Car;
 import com.Project.cabbooking.ride.Ride;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -11,21 +12,24 @@ import java.util.List;
 
 @Entity
 public class DriverAccount {
+
     @Id
     @GeneratedValue
     private Integer id;
+
+    private String driverid;
     private String name;
     private String emailId;
     private String password;
-    private Double phoneNumber;
-    private Double licenseNumber;
+    private Long phoneNumber;
+    private Long licenseNumber;
 
     @OneToMany
     private List<Rating> ratings = new ArrayList<>();
 
     @OneToOne
     @JsonIgnore
-    private Car car;
+    private CarAccount car;
 
     @OneToMany
     private List<Ride> rides = new ArrayList<>();
@@ -33,12 +37,24 @@ public class DriverAccount {
     public DriverAccount() {
     }
 
-    public DriverAccount(String name, String emailId, String password, Double phoneNumber, Double licenseNumber) {
+    public DriverAccount(String name, String emailId, String password, Long phoneNumber, Long licenseNumber) {
         this.name = name;
         this.emailId = emailId;
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.licenseNumber = licenseNumber;
+    }
+    public DriverAccount(Integer id, String driverid, String name, String emailId, String password, Long phoneNumber, Long licenseNumber, List<Rating> ratings, CarAccount car, List<Ride> rides) {
+        this.id = id;
+        this.driverid = driverid;
+        this.name = name;
+        this.emailId = emailId;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.licenseNumber = licenseNumber;
+        this.ratings = ratings;
+        this.car = car;
+        this.rides = rides;
 
     }
 
@@ -50,8 +66,15 @@ public class DriverAccount {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setid(Integer id) {
         this.id = id;
+    }
+    public String getDriverid() {
+        return driverid;
+    }
+
+    public void setDriverid(String driverid) {
+        this.driverid = driverid;
     }
 
     public String getName() {
@@ -78,21 +101,22 @@ public class DriverAccount {
         this.password = password;
     }
 
-    public Double getPhoneNumber() {
+    public Long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Double phoneNumber) {
+    public void setPhoneNumber(Long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public Double getLicenseNumber() {
+    public Long getLicenseNumber() {
         return licenseNumber;
     }
 
-    public void setLicenseNumber(Double licenseNumber) {
+    public void setLicenseNumber(Long licenseNumber) {
         this.licenseNumber = licenseNumber;
     }
+
 
     public List<Rating> getRatings() {
         return ratings;
@@ -117,4 +141,27 @@ public class DriverAccount {
     public void setRides(List<Ride> rides) {
         this.rides = rides;
     }
+//    public List<Rating> getRatings() {
+//        return ratings;
+//    }
+//
+//    public void setRatings(List<Rating> ratings) {
+//        this.ratings = ratings;
+//    }
+//
+//    public Car getCar() {
+//        return car;
+//    }
+//
+//    public void setCar(Car car) {
+//        this.car = car;
+//    }
+//
+//    public List<Ride> getRides() {
+//        return rides;
+//    }
+//
+//    public void setRides(List<Ride> rides) {
+//        this.rides = rides;
+//    }
 }

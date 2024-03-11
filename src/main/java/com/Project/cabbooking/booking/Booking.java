@@ -1,12 +1,13 @@
 package com.Project.cabbooking.booking;
 
-import com.Project.cabbooking.car.Car;
+import com.Project.cabbooking.car.CarAccount;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 public class Booking {
@@ -28,12 +29,12 @@ public class Booking {
     private Rating rating;
 
     @OneToOne
-    private Car car;
+    private CarAccount car;
 
     public Booking() {
     }
 
-    public Booking(Integer id, String startLocation, String endLocation, LocalDate bookingDate, LocalTime bookingTime, LocalDate rideDate, String status, Double fare, Payment payment, Rating rating, Car car) {
+    public Booking(Integer id, String startLocation, String endLocation, LocalDate bookingDate, LocalTime bookingTime, LocalDate rideDate, String status, Double fare, Payment payment, Rating rating, CarAccount car) {
         this.id = id;
         this.startLocation = startLocation;
         this.endLocation = endLocation;
@@ -131,11 +132,11 @@ public class Booking {
         this.rating = rating;
     }
 
-    public Car getCar() {
+    public CarAccount getCar() {
         return car;
     }
 
-    public void setCar(Car car) {
+    public void setCar(CarAccount car) {
         this.car = car;
     }
 
