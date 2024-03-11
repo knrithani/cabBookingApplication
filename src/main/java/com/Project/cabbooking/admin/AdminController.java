@@ -67,10 +67,10 @@ public class AdminController {
         return this.adminService.assignCabToDriver(cabId,driverId);
     }
 
-    public AdminController(CarRepository carRepository, DriverRepository driverRepository) {
-        this.carRepository = carRepository;
-        this.driverRepository = driverRepository;
-    }
+//    public AdminController(CarRepository carRepository, DriverRepository driverRepository) {
+//        this.carRepository = carRepository;
+//        this.driverRepository = driverRepository;
+//    }
 
 //    @PostMapping("/assignCabToDriver")
 //    public String assignCabToDriver(@RequestParam Integer driverId, @RequestParam Integer cabId) {
