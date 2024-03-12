@@ -90,6 +90,5 @@ public class Ride {
     public void setDriver(DriverAccount driver) {
         this.driver = driver;
     }
-
-
+    
 }
