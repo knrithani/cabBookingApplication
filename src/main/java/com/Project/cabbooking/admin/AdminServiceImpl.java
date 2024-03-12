@@ -9,14 +9,14 @@ import com.Project.cabbooking.ride.Ride;
 import com.Project.cabbooking.ride.RideRepository;
 import com.Project.cabbooking.user.CustomerAccount;
 import com.Project.cabbooking.user.CustomerRepository;
+import com.Project.cabbooking.booking.Route;
+import com.Project.cabbooking.booking.RouteException;
+import com.Project.cabbooking.booking.RouteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,6 +36,8 @@ public class AdminServiceImpl implements com.Project.cabbooking.admin.AdminServi
 
     @Autowired
     private RideRepository rideRepository;
+    @Autowired
+    private RouteRepository routeRepository;
 
     @Override
     public CustomerAccount registerUser(CustomerAccount account) throws AdminExceptions {
@@ -84,7 +86,7 @@ public class AdminServiceImpl implements com.Project.cabbooking.admin.AdminServi
     }
 
     @Override
-    public List <Ride> getAllTrips() throws AdminExceptions {
+    public List<Ride> getAllTrips() throws AdminExceptions {
         List<Ride> rides = rideRepository.findAll();
         return rides;
     }
@@ -108,9 +110,9 @@ public class AdminServiceImpl implements com.Project.cabbooking.admin.AdminServi
         }
         return rideList;
     }
-    }
 
-    public List<Car> displayAllCabs() throws RouteException {
+
+    public List<CarAccount> displayAllCabs() throws RouteException {
         if(carRepository.findAll().isEmpty()){
             throw new RouteException("There is no cab added");
         }

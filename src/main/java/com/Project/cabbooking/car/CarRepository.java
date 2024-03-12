@@ -6,5 +6,6 @@ import java.util.Optional;
 
 public interface CarRepository extends JpaRepository<CarAccount, Integer> {
     Optional<CarAccount> findByCarNumber(String carNumber);
+
     Car getCarById(Integer id);
 }

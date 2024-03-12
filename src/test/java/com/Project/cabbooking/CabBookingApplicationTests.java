@@ -36,7 +36,7 @@ class CabBookingApplicationTests {
 		driverAccount.setPassword("Dri@123");
 		driverAccount.setPhoneNumber(8746728738L);
 		driverAccount.setEmailId("Dri@gmail.com");
-		driverAccount.setLicenseNumber(Long.valueOf("DR1364785789036"));
+		driverAccount.setLicenseNumber(String.valueOf(Long.valueOf("DR1364785789036")));
 		Assert.notNull(driverRepository.findByDriverid("D1"),"DRIVER FOUND IN DB");
 
 

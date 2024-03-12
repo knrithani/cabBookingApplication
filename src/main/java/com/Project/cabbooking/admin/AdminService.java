@@ -2,8 +2,8 @@ package com.Project.cabbooking.admin;
 
 import com.Project.cabbooking.booking.Route;
 import com.Project.cabbooking.booking.RouteException;
-import com.Project.cabbooking.car.Car;
 import com.Project.cabbooking.driver.DriverAccount;
+import com.Project.cabbooking.ride.Ride;
 import com.Project.cabbooking.user.CustomerAccount;
 import com.Project.cabbooking.booking.Booking;
 import com.Project.cabbooking.car.CarAccount;
@@ -14,9 +14,9 @@ import java.util.Optional;
 
 public interface AdminService {
 
-    CustomerAccount registerUser(CustomerAccount account);
+    CustomerAccount registerUser(CustomerAccount account) throws AdminExceptions;
 
-    List<Car> displayAllCabs() throws RouteException;
+    List<CarAccount> displayAllCabs() throws RouteException;
 
     List<DriverAccount> displayAllDrivers()throws RouteException;
 

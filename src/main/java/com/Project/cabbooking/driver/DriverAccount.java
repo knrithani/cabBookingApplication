@@ -2,7 +2,6 @@ package com.Project.cabbooking.driver;
 
 import com.Project.cabbooking.booking.Rating;
 import com.Project.cabbooking.car.CarAccount;
-import com.Project.cabbooking.car.Car;
 import com.Project.cabbooking.ride.Ride;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -22,7 +21,7 @@ public class DriverAccount {
     private String emailId;
     private String password;
     private Long phoneNumber;
-    private Long licenseNumber;
+    private String licenseNumber;
 
     @OneToMany
     private List<Rating> ratings = new ArrayList<>();
@@ -37,14 +36,14 @@ public class DriverAccount {
     public DriverAccount() {
     }
 
-    public DriverAccount(String name, String emailId, String password, Long phoneNumber, Long licenseNumber) {
+    public DriverAccount(String name, String emailId, String password, Long phoneNumber, String licenseNumber) {
         this.name = name;
         this.emailId = emailId;
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.licenseNumber = licenseNumber;
     }
-    public DriverAccount(Integer id, String driverid, String name, String emailId, String password, Long phoneNumber, Long licenseNumber, List<Rating> ratings, CarAccount car, List<Ride> rides) {
+    public DriverAccount(Integer id, String driverid, String name, String emailId, String password, Long phoneNumber, String licenseNumber, List<Rating> ratings, CarAccount car, List<Ride> rides) {
         this.id = id;
         this.driverid = driverid;
         this.name = name;
@@ -109,11 +108,11 @@ public class DriverAccount {
         this.phoneNumber = phoneNumber;
     }
 
-    public Long getLicenseNumber() {
+    public String getLicenseNumber() {
         return licenseNumber;
     }
 
-    public void setLicenseNumber(Long licenseNumber) {
+    public void setLicenseNumber(String licenseNumber) {
         this.licenseNumber = licenseNumber;
     }
 
@@ -126,11 +125,11 @@ public class DriverAccount {
         this.ratings = ratings;
     }
 
-    public Car getCar() {
+    public CarAccount getCar() {
         return car;
     }
 
-    public void setCar(Car car) {
+    public void setCar(CarAccount car) {
         this.car = car;
     }
 

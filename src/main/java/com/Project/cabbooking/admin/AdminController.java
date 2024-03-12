@@ -3,7 +3,6 @@ package com.Project.cabbooking.admin;
 
 import com.Project.cabbooking.booking.Route;
 import com.Project.cabbooking.booking.RouteException;
-import com.Project.cabbooking.car.Car;
 import com.Project.cabbooking.car.CarRepository;
 import com.Project.cabbooking.driver.DriverAccount;
 import com.Project.cabbooking.driver.DriverRepository;
@@ -12,13 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.Project.cabbooking.booking.Booking;
 import com.Project.cabbooking.car.CarAccount;
-import com.Project.cabbooking.driver.DriverAccount;
 import com.Project.cabbooking.ride.Ride;
-import com.Project.cabbooking.user.CustomerAccount;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -33,29 +28,31 @@ public class AdminController {
     AdminService adminService;
 
     @PostMapping("user")
-    public CustomerAccount registerUser(@RequestBody CustomerAccount account){
+    public CustomerAccount registerUser(@RequestBody CustomerAccount account) throws AdminExceptions {
         return this.adminService.registerUser(account);
 
     }
+
     @GetMapping("Cabs")
-    public List<Car> displayAllCabs() throws RouteException {
+    public List<CarAccount> displayAllCabs() throws RouteException {
         return this.adminService.displayAllCabs();
     }
 
     @GetMapping("Drivers")
-        public List<DriverAccount> displayAllDrivers() throws RouteException {
-            return this.adminService.displayAllDrivers();
-        }
+    public List<DriverAccount> displayAllDrivers() throws RouteException {
+        return this.adminService.displayAllDrivers();
+    }
 
 
     @DeleteMapping("location/{locationId}")
     public void deleteLocation(@PathVariable Integer locationId) throws RouteException {
-         this.adminService.deleteRoute(locationId);
+        this.adminService.deleteRoute(locationId);
     }
+
     @PostMapping("locations")
     public Route createRoute(Route route) throws RouteException {
         return this.adminService.creatRoute(route);
-        }
+    }
 
     @GetMapping("location")
     public List<Route> displayAllLocations() throws RouteException {
@@ -64,7 +61,7 @@ public class AdminController {
 
     @PutMapping("updatefare/{locationId}/{fare}")
     public Optional<Route> updateFare(@PathVariable Integer locationId, @PathVariable Double fare) throws RouteException {
-        return this.adminService.updateFare(locationId,fare);
+        return this.adminService.updateFare(locationId, fare);
     }
 
     @GetMapping("getfare/{locationId}")
@@ -73,9 +70,10 @@ public class AdminController {
     }
 
     @PostMapping("assigningCabToDriver/{cabId}/{driverId}")
-    public Map<Integer,Integer> assigningCabToDriver(@PathVariable Integer cabId,@PathVariable Integer driverId){
-        return this.adminService.assignCabToDriver(cabId,driverId);
+    public Map<Integer, Integer> assigningCabToDriver(@PathVariable Integer cabId, @PathVariable Integer driverId) {
+        return this.adminService.assignCabToDriver(cabId, driverId);
     }
+
     @PostMapping("driver")
     public DriverAccount registerDriver(@RequestBody DriverAccount account) throws AdminExceptions {
         return this.adminService.registerDriver(account);
@@ -88,7 +86,7 @@ public class AdminController {
 
     @GetMapping("/Booking/{cdsId}")
     public ResponseEntity<List<Booking>> getAllTripsHandler(@PathVariable("cdsId") String cdsId) throws AdminExceptions {
-        List<Booking> trips= adminService.getAllTrips(cdsId);
+        List<Booking> trips = adminService.getAllTrips(cdsId);
         return new ResponseEntity<List<Booking>>(trips, HttpStatus.OK);
     }
 
@@ -113,42 +111,10 @@ public class AdminController {
         return this.adminService.getAllDriverTrips();
     }
 
-    @PostMapping("driver")
-    public DriverAccount registerDriver(@RequestBody DriverAccount account) throws AdminExceptions {
-        return this.adminService.registerDriver(account);
-    }
-
-    @PostMapping("cab")
-    public CarAccount registerCar(@RequestBody CarAccount account) throws AdminExceptions {
-        return this.adminService.registerCar(account);
-    }
-
-    @GetMapping("/Booking/{cdsId}")
-    public ResponseEntity<List<Booking>> getAllTripsHandler(@PathVariable("cdsId") String cdsId) throws AdminExceptions {
-        List<Booking> trips= adminService.getAllTrips(cdsId);
-        return new ResponseEntity<List<Booking>>(trips, HttpStatus.OK);
-    }
 
 
-    @GetMapping("/Booking")
-    public List<Booking>  getAllBookings() throws AdminExceptions {
-        return adminService.getAllBookings();
-    }
 
-    @GetMapping("/Trips")
-    public List<Ride>  getAllTrips() throws AdminExceptions {
-        return adminService.getAllTrips();
-    }
 
-    @GetMapping("customerbookings")
-    public List<List<Booking>> CustomerBookings(){
-        return this.adminService.getAllCustomerBookings();
-    }
-
-    @GetMapping("drivertrips")
-    public List<List<Ride>> driverTrips(){
-        return this.adminService.getAllDriverTrips();
-    }
 //    public AdminController(CarRepository carRepository, DriverRepository driverRepository) {
 //        this.carRepository = carRepository;
 //        this.driverRepository = driverRepository;
